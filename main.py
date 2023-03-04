@@ -33,9 +33,10 @@ class welcomeScreen(QDialog):
 
         con=c.connect(host='localhost',user='root',passwd='usama78630mirzas',database='priceprediction')
         cursor=con.cursor()
-        query='insert into Prediction(ModelID,yearMade,meterReading,price) values({},{},{},{})'.format(self.modID,self.year,self.meter,self.result)
+        query='insert into Prediction values({},{},{},{})'.format(self.modID,self.year,self.meter,self.result)
         cursor.execute(query)
-        
+        con.commit()
+
         output.goBack.clicked.connect(self.goBackF)
 
     def goBackF(self):
