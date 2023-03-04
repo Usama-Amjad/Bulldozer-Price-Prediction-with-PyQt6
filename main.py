@@ -3,6 +3,7 @@ from PyQt6.uic import loadUi
 from PyQt6.QtWidgets import QDialog , QApplication , QWidget , QStackedWidget, QMessageBox , QTableWidget , QTableWidgetItem
 from PyQt6.QtGui import QIcon 
 from model_run import get_prediction
+import mysql.connector as c
 
 # Main Screen
 class welcomeScreen(QDialog):
@@ -22,12 +23,19 @@ class welcomeScreen(QDialog):
         with open("./static_data/files/data.csv" , "a") as data:
             data.write(f"{self.modID},{self.year},{self.meter},{self.result}\n")
             data.close()
+        
 
         output=priceOutput()
         widget.addWidget(output)
         widget.setCurrentIndex(widget.currentIndex()+1)
         self.result=str(self.result)
         output.Price.setText(self.result)
+
+        con=c.connect(host='localhost',user='root',passwd='usama78630mirzas',database='priceprediction')
+        cursor=con.cursor()
+        query='insert into Prediction(ModelID,yearMade,meterReading,price) values({},{},{},{})'.format(self.modID,self.year,self.meter,self.result)
+        cursor.execute(query)
+        
         output.goBack.clicked.connect(self.goBackF)
 
     def goBackF(self):
