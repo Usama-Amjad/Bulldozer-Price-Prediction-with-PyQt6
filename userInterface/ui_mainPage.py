@@ -54,6 +54,9 @@ class Ui_Dialog(object):
         self.Clear = QtWidgets.QPushButton(parent=Dialog)
         self.Clear.setGeometry(QtCore.QRect(270, 440, 93, 28))
         self.Clear.setObjectName("Clear")
+        self.adminButton = QtWidgets.QPushButton(parent=Dialog)
+        self.adminButton.setGeometry(QtCore.QRect(570, 440, 93, 28))
+        self.adminButton.setObjectName("adminButton")
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
@@ -67,3 +70,4 @@ class Ui_Dialog(object):
         self.label_4.setText(_translate("Dialog", "Enter Expected Meter Reading:"))
         self.Calculate.setText(_translate("Dialog", "Calculate"))
         self.Clear.setText(_translate("Dialog", "Close"))
+        self.adminButton.setText(_translate("Dialog", "Admin "))

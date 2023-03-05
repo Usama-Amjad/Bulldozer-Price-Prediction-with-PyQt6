@@ -12,7 +12,7 @@ class welcomeScreen(QDialog):
         loadUi('./userInterface/mainPage.ui' , self)
         self.setWindowIcon(QIcon('./bulldozer-icon.png'))
         self.Calculate.clicked.connect(self.calculation)
-        # self.Clear.clicked.connect(self.close())
+        self.adminButton.clicked.connect(self.admin)
     
     def calculation(self):
         self.modID=int(self.modelID.text())
@@ -44,12 +44,38 @@ class welcomeScreen(QDialog):
         widget.addWidget(welcome)
         widget.setCurrentIndex(widget.currentIndex()+1)
 
+    def admin(self):
+        adminP=adminLogInPage()
+        widget.addWidget(adminP)
+        widget.setCurrentIndex(widget.currentIndex()+1)
+        if adminP.username.text()=='admin' and adminP.password.text()=='admin':
+            adminP.signin.clicked.connect(self.adminMain)
+        else:
+            msg = QMessageBox.critical(self,'Invalid Information','Enter Valid Credentials')
+    
+    def adminMain(self):
+        adminM=adminMainPage()
+        
+        
+        
+
+
 
 # Output Class
 class priceOutput(QDialog):
     def __init__(self):
         super(priceOutput , self).__init__()
         loadUi('./userInterface/priceOutput.ui' , self)    
+
+class adminLogInPage(QDialog):
+    def __init__(self ):
+        super(adminLogInPage,self).__init__()
+        loadUi('./userInterface/adminOutput.ui',self)
+
+class adminMainPage(QDialog):
+    def __init__(self ):
+        super(adminMainPage,self).__init__()
+        loadUi('./userInterface/adminOutput.ui',self)
 
 
 
