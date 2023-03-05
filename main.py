@@ -71,7 +71,42 @@ class adminLogInPage(QDialog):
 class adminMainPage(QDialog):
     def __init__(self ):
         super(adminMainPage,self).__init__()
-        loadUi('./userInterface/mainPage.ui',self)
+        loadUi('./userInterface/adminView.ui',self)
+        self.delete_2.clicked.connect(self.deleteData)
+
+        rows,cursor=showall()
+        cursor.execute("select * from Prediction")
+        self.adminTable.setRowCount(rows)
+
+        rowNo = 0
+        for data in cursor:
+            self.adminTable.setItem(rowNo , 0 , QTableWidgetItem(data[0]))
+            self.adminTable.setItem(rowNo , 1 , QTableWidgetItem(data[1]))
+            self.adminTable.setItem(rowNo , 2 , QTableWidgetItem(data[2]))                     
+            rowNo += 1 
+
+    
+    def deleteData(self):
+        selectedRow=self.adminTable.currentRow()
+
+        if selectedRow<0:
+            return QMessageBox.warning(self, 'ERROR','Please select a record to delete')
+        else:
+            self.ModelID = self.adminTable.item(selectedRow , 2).text()
+            btn = QMessageBox.question(self , "Confirmation" , "Are You Sure You Want To Delete The Selected Record" ,
+                         QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
+                                  )
+
+            if btn == QMessageBox.StandardButton.Yes:
+                dropRow(self.userID)
+                QMessageBox.information(self , "Congratulations" , "Data Has Been Deleted")
+                self.viewAll()
+
+    def viewAll(self):
+        adminOBJ = adminMainPage()
+        widget.addWidget(adminOBJ)
+        widget.setCurrentIndex(widget.currentIndex()+1)
+
 
 
 

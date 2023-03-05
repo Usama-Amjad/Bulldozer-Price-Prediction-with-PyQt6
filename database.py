@@ -25,3 +25,15 @@ def updateDatabase(modelId , yearMade , meterReading ,condition):
     mycursor.execute(query)
     mydb.commit()
 
+# Show All Data
+def showall():
+    mycursor = mydb.cursor()
+    select = "select * from Prediction"
+    mycursor.execute(select)
+    rows = 0 
+    for data in mycursor:
+        print(data)
+        rows +=1
+    return rows , mycursor
+
+
