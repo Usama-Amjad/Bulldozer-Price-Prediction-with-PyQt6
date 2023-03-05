@@ -3,9 +3,9 @@ from PyQt6.uic import loadUi
 from PyQt6.QtWidgets import QDialog , QApplication , QWidget , QStackedWidget, QMessageBox , QTableWidget , QTableWidgetItem
 from PyQt6.QtGui import QIcon 
 from model_run import get_prediction
-import mysql.connector as c
+from database import *
 
-# Main Screen
+####################################################### Main Screen ######################################################
 class welcomeScreen(QDialog):
     def __init__(self):
         super(welcomeScreen , self ).__init__() 
@@ -24,6 +24,7 @@ class welcomeScreen(QDialog):
             data.write(f"{self.modID},{self.year},{self.meter},{self.result}\n")
             data.close()
         
+        addData(self.modID,self.year,self.meter,self.result)
 
         output=priceOutput()
         widget.addWidget(output)
@@ -31,51 +32,46 @@ class welcomeScreen(QDialog):
         self.result=str(self.result)
         output.Price.setText(self.result)
 
-        con=c.connect(host='localhost',user='root',passwd='usama78630mirzas',database='priceprediction')
-        cursor=con.cursor()
-        query='insert into Prediction values({},{},{},{})'.format(self.modID,self.year,self.meter,self.result)
-        cursor.execute(query)
-        con.commit()
-
-        output.goBack.clicked.connect(self.goBackF)
+    def admin(self):
+        adminP=adminLogInPage()
+        widget.addWidget(adminP)
+        widget.setCurrentIndex(widget.currentIndex()+1)
+    
+####################################################### Output Screen ######################################################
+class priceOutput(QDialog):
+    def __init__(self):
+        super(priceOutput , self).__init__()
+        loadUi('./userInterface/priceOutput.ui' , self)    
+        self.goBack.clicked.connect(self.goBackF)
 
     def goBackF(self):
         welcome = welcomeScreen()
         widget.addWidget(welcome)
         widget.setCurrentIndex(widget.currentIndex()+1)
 
-    def admin(self):
-        adminP=adminLogInPage()
-        widget.addWidget(adminP)
-        widget.setCurrentIndex(widget.currentIndex()+1)
-        if adminP.username.text()=='admin' and adminP.password.text()=='admin':
-            adminP.signin.clicked.connect(self.adminMain)
-        else:
-            msg = QMessageBox.critical(self,'Invalid Information','Enter Valid Credentials')
-    
-    def adminMain(self):
-        adminM=adminMainPage()
-        
-        
-        
 
-
-
-# Output Class
-class priceOutput(QDialog):
-    def __init__(self):
-        super(priceOutput , self).__init__()
-        loadUi('./userInterface/priceOutput.ui' , self)    
-
+####################################################### Admin LogIn Screen ######################################################
 class adminLogInPage(QDialog):
     def __init__(self ):
         super(adminLogInPage,self).__init__()
         loadUi('./userInterface/adminOutput.ui',self)
+        self.signin.clicked.connect(self.adminMain)
+        
+        
+    def adminMain(self):
+        if self.username.text()=='admin' and self.password.text()=='admin':    
+            adminM=adminMainPage()
+            widget.addWidget(adminM)
+            widget.setCurrentIndex(widget.currentIndex()+1)
+        else:
+            msg = QMessageBox.critical(self,'Invalid Information','Enter Valid Credentials')
+    
 
+####################################################### Admin Main Screen ######################################################
 class adminMainPage(QDialog):
     def __init__(self ):
         super(adminMainPage,self).__init__()
-        loadUi('./userInterface/adminOutput.ui',self)
+        loadUi('./userInterface/mainPage.ui',self)
 
 
 
