@@ -59,7 +59,7 @@ class adminLogInPage(QDialog):
         
         
     def adminMain(self):
-        if self.username.text()=='admin' and self.password.text()=='admin':    
+        if self.username.text()=='admin' and self.password.text()=='admin':   
             adminM=adminMainPage()
             widget.addWidget(adminM)
             widget.setCurrentIndex(widget.currentIndex()+1)
@@ -160,22 +160,19 @@ class Update(QDialog):
         
     def RecordUpdated(self):
         if len(self.condition.text())==0 or len(self.modelID.text())==0 or len(self.yearMade.text()) == 0 or len(self.meterReading.text()) == 0:
-            # self.error.setText("Please Fill All Fields")
-            print('s')
+            self.error.setText("Please Fill All Fields")
         else:
-            # self.error.setText("")
-            self.model = self.modelID.text()
-            self.yearM = self.yearMade.text()
-            self.meterR = self.meterReading.text()
-            self.con = self.condition.text()
+            self.model = self.modelID.value()
+            self.yearM = self.yearMade.value()
+            self.meterR = self.meterReading.value()
+            self.con = self.condition.value()
+
             updateDatabase(self.model , self.yearM , self.meterR , self.con)
             btn = QMessageBox.information(self, "Congratulations" , "Data Has Been Updated",QMessageBox.StandardButton.Ok)
             if btn==QMessageBox.StandardButton.Ok:
                 admin=adminMainPage()
                 widget.addWidget(admin)
                 widget.setCurrentIndex(widget.currentIndex()+1)
-
-
 
 app = QApplication(sys.argv)
 welcome = welcomeScreen()

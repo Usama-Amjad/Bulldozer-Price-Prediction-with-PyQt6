@@ -21,61 +21,59 @@ class Ui_Dialog(object):
         font.setWeight(75)
         self.label.setFont(font)
         self.label.setObjectName("label")
-        self.condition = QtWidgets.QLineEdit(parent=Dialog)
-        self.condition.setGeometry(QtCore.QRect(110, 90, 181, 31))
-        self.condition.setStyleSheet("QLineEdit{\n"
-"border:none;\n"
-"border-radius: 20px;\n"
-"padding-left: 15px;\n"
-"color:black;\n"
-"}\n"
-"\n"
-"QLineEdit:hover{\n"
-"border: 1px solid blue;\n"
-"}")
-        self.condition.setObjectName("condition")
-        self.modelID = QtWidgets.QLineEdit(parent=Dialog)
-        self.modelID.setGeometry(QtCore.QRect(110, 140, 181, 31))
-        self.modelID.setStyleSheet("QLineEdit{\n"
-"border:none;\n"
-"border-radius: 20px;\n"
-"padding-left: 15px;\n"
-"color:black;\n"
-"}\n"
-"\n"
-"QLineEdit:hover{\n"
-"border: 1px solid blue;\n"
-"}")
-        self.modelID.setObjectName("modelID")
-        self.yearMade = QtWidgets.QLineEdit(parent=Dialog)
-        self.yearMade.setGeometry(QtCore.QRect(110, 190, 181, 31))
-        self.yearMade.setStyleSheet("QLineEdit{\n"
-"border:none;\n"
-"border-radius: 20px;\n"
-"padding-left: 15px;\n"
-"color:black;\n"
-"}\n"
-"\n"
-"QLineEdit:hover{\n"
-"border: 1px solid blue;\n"
-"}")
-        self.yearMade.setObjectName("yearMade")
-        self.meterReading = QtWidgets.QLineEdit(parent=Dialog)
-        self.meterReading.setGeometry(QtCore.QRect(110, 240, 181, 31))
-        self.meterReading.setStyleSheet("QLineEdit{\n"
-"border:none;\n"
-"border-radius: 20px;\n"
-"padding-left: 15px;\n"
-"color:black;\n"
-"}\n"
-"\n"
-"QLineEdit:hover{\n"
-"border: 1px solid blue;\n"
-"}")
-        self.meterReading.setObjectName("meterReading")
         self.updateButton = QtWidgets.QPushButton(parent=Dialog)
-        self.updateButton.setGeometry(QtCore.QRect(150, 310, 93, 28))
+        self.updateButton.setGeometry(QtCore.QRect(150, 320, 93, 28))
         self.updateButton.setObjectName("updateButton")
+        self.error = QtWidgets.QLabel(parent=Dialog)
+        self.error.setGeometry(QtCore.QRect(150, 280, 101, 16))
+        self.error.setText("")
+        self.error.setObjectName("error")
+        self.condition = QtWidgets.QSpinBox(parent=Dialog)
+        self.condition.setGeometry(QtCore.QRect(130, 90, 141, 31))
+        self.condition.setMinimum(500)
+        self.condition.setMaximum(30000)
+        self.condition.setObjectName("condition")
+        self.modelID = QtWidgets.QSpinBox(parent=Dialog)
+        self.modelID.setGeometry(QtCore.QRect(130, 140, 141, 31))
+        self.modelID.setMinimum(500)
+        self.modelID.setMaximum(30000)
+        self.modelID.setObjectName("modelID")
+        self.yearMade = QtWidgets.QSpinBox(parent=Dialog)
+        self.yearMade.setGeometry(QtCore.QRect(130, 200, 141, 31))
+        self.yearMade.setMinimum(1990)
+        self.yearMade.setMaximum(2021)
+        self.yearMade.setObjectName("yearMade")
+        self.meterReading = QtWidgets.QSpinBox(parent=Dialog)
+        self.meterReading.setGeometry(QtCore.QRect(130, 260, 141, 31))
+        self.meterReading.setMinimum(0)
+        self.meterReading.setMaximum(9999999)
+        self.meterReading.setSingleStep(100)
+        self.meterReading.setProperty("value", 0)
+        self.meterReading.setObjectName("meterReading")
+        self.label_2 = QtWidgets.QLabel(parent=Dialog)
+        self.label_2.setGeometry(QtCore.QRect(150, 70, 101, 21))
+        font = QtGui.QFont()
+        font.setPointSize(8)
+        self.label_2.setFont(font)
+        self.label_2.setObjectName("label_2")
+        self.label_3 = QtWidgets.QLabel(parent=Dialog)
+        self.label_3.setGeometry(QtCore.QRect(150, 170, 101, 31))
+        font = QtGui.QFont()
+        font.setPointSize(8)
+        self.label_3.setFont(font)
+        self.label_3.setObjectName("label_3")
+        self.label_4 = QtWidgets.QLabel(parent=Dialog)
+        self.label_4.setGeometry(QtCore.QRect(150, 120, 101, 21))
+        font = QtGui.QFont()
+        font.setPointSize(8)
+        self.label_4.setFont(font)
+        self.label_4.setObjectName("label_4")
+        self.label_5 = QtWidgets.QLabel(parent=Dialog)
+        self.label_5.setGeometry(QtCore.QRect(110, 230, 181, 31))
+        font = QtGui.QFont()
+        font.setPointSize(8)
+        self.label_5.setFont(font)
+        self.label_5.setObjectName("label_5")
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
@@ -84,8 +82,8 @@ class Ui_Dialog(object):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
         self.label.setText(_translate("Dialog", "Update Data"))
-        self.condition.setPlaceholderText(_translate("Dialog", "Previous Model ID"))
-        self.modelID.setPlaceholderText(_translate("Dialog", "Model ID"))
-        self.yearMade.setPlaceholderText(_translate("Dialog", "Year Made"))
-        self.meterReading.setPlaceholderText(_translate("Dialog", "Meter Reading"))
         self.updateButton.setText(_translate("Dialog", "Update"))
+        self.label_2.setText(_translate("Dialog", "Enter P.ModelID"))
+        self.label_3.setText(_translate("Dialog", "Enter Year Made"))
+        self.label_4.setText(_translate("Dialog", "Enter ModelID"))
+        self.label_5.setText(_translate("Dialog", "Enter Expected Meter Reading"))
