@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>362</width>
-    <height>279</height>
+    <width>639</width>
+    <height>595</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,18 +16,24 @@
   <widget class="QLineEdit" name="Price">
    <property name="geometry">
     <rect>
-     <x>120</x>
+     <x>270</x>
      <y>110</y>
      <width>121</width>
      <height>41</height>
     </rect>
    </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+   <property name="clearButtonEnabled">
+    <bool>true</bool>
+   </property>
   </widget>
   <widget class="QLabel" name="estimatedPrice">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>20</y>
+     <x>240</x>
+     <y>50</y>
      <width>301</width>
      <height>41</height>
     </rect>
@@ -37,6 +43,7 @@
      <pointsize>22</pointsize>
      <weight>75</weight>
      <bold>true</bold>
+     <underline>true</underline>
     </font>
    </property>
    <property name="text">
@@ -46,8 +53,8 @@
   <widget class="QPushButton" name="goBack">
    <property name="geometry">
     <rect>
-     <x>130</x>
-     <y>200</y>
+     <x>280</x>
+     <y>180</y>
      <width>93</width>
      <height>28</height>
     </rect>
