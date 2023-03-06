@@ -84,7 +84,7 @@
     <string>Admin View</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="viewAll">
+  <widget class="QPushButton" name="viewAllB">
    <property name="geometry">
     <rect>
      <x>100</x>

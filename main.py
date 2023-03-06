@@ -77,11 +77,11 @@ class adminMainPage(QDialog):
         self.searchByModelId.clicked.connect(self.searchPage)
         self.add.clicked.connect(self.addRecord)
         self.updateB.clicked.connect(self.updateRecord)
+        self.viewAllB.clicked.connect(self.viewAll)
 
         rows,cursor=showall()
 
         cursor.execute("select * from Prediction")
-        # print(cursor)
         self.adminTable.setRowCount(rows)
 
         rowNo=0
@@ -91,22 +91,15 @@ class adminMainPage(QDialog):
                 self.adminTable.setItem(rowNo , col , QTableWidgetItem(data))
             rowNo += 1
 
-        # rowNo = 0
-        # for data in cursor:
-        #     print(data)
-        #     self.adminTable.setItem(rowNo , 0 , QTableWidgetItem(data[0]))
-        #     self.adminTable.setItem(rowNo , 1 , QTableWidgetItem(data[1]))
-        #     self.adminTable.setItem(rowNo , 2 , QTableWidgetItem(data[2]))    
-        #     self.adminTable.setItem(rowNo , 3 , QTableWidgetItem(data[3]))                     
-        #     rowNo += 1 
-    
     def deleteData(self):
         selectedRow=self.adminTable.currentRow()
 
         if selectedRow<0:
             return QMessageBox.warning(self, 'ERROR','Please select a record to delete')
         else:
-            self.ModelID = self.adminTable.item(selectedRow , 2).text()
+
+            self.ModelID = self.adminTable.item(selectedRow , 0).text()
+            print(type(self.ModelID))
             btn = QMessageBox.question(self , "Confirmation" , "Are You Sure You Want To Delete The Selected Record" ,
                          QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
                                   )
@@ -151,12 +144,11 @@ class adminMainPage(QDialog):
                 query = f'select * from Prediction where ModelID = "{self.id}"'
                 cursor.execute(query)
                 self.adminTable.setRowCount(rows)
-                rowNo = 0
-                for data in cursor:
-                    self.adminTable.setItem(rowNo , 0 , QTableWidgetItem(data[0]))
-                    self.adminTable.setItem(rowNo , 1 , QTableWidgetItem(data[1]))
-                    self.adminTable.setItem(rowNo , 2 , QTableWidgetItem(data[2]))
-                    self.adminTable.setItem(rowNo , 3 , QTableWidgetItem(data[3]))                         
+                rowNo=0
+                for item in cursor:
+                    for col in range(0,4):
+                        data = str(item[col])
+                        self.adminTable.setItem(rowNo , col , QTableWidgetItem(data))
                     rowNo += 1
 
  ######################################################## Update Data ###################################################################
@@ -177,8 +169,12 @@ class Update(QDialog):
             self.meterR = self.meterReading.text()
             self.con = self.condition.text()
             updateDatabase(self.model , self.yearM , self.meterR , self.con)
-            QMessageBox.information(self, "Congratulations" , "Data Has Been Updated")
-            adminMainPage.viewAll()
+            btn = QMessageBox.information(self, "Congratulations" , "Data Has Been Updated",QMessageBox.StandardButton.Ok)
+            if btn==QMessageBox.StandardButton.Ok:
+                admin=adminMainPage()
+                widget.addWidget(admin)
+                widget.setCurrentIndex(widget.currentIndex()+1)
+
 
 
 app = QApplication(sys.argv)
