@@ -32,8 +32,20 @@ def showall():
     mycursor.execute(select)
     rows = 0 
     for data in mycursor:
-        print(data)
+        # print(data)
         rows +=1
     return rows , mycursor
+
+# Where Command
+def whereControls(id):
+    rowsInWhere = 0
+    mycursor =  mydb.cursor()
+    userID = id
+    query = f'SELECT * FROM Prediction WHERE ModelID ="{userID}"'
+    mycursor.execute(query)
+
+    for data in mycursor:
+        rowsInWhere +=1
+    return rowsInWhere , mycursor
 
 

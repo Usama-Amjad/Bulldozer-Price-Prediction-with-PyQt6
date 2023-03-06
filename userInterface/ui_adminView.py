@@ -57,6 +57,9 @@ class Ui_Dialog(object):
         self.searchID = QtWidgets.QLineEdit(parent=Dialog)
         self.searchID.setGeometry(QtCore.QRect(240, 440, 113, 31))
         self.searchID.setObjectName("searchID")
+        self.logOut = QtWidgets.QPushButton(parent=Dialog)
+        self.logOut.setGeometry(QtCore.QRect(510, 440, 93, 28))
+        self.logOut.setObjectName("logOut")
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
@@ -79,3 +82,4 @@ class Ui_Dialog(object):
         self.add.setText(_translate("Dialog", "Add"))
         self.update.setText(_translate("Dialog", "Update"))
         self.searchByModelId.setText(_translate("Dialog", "Search by ModelID"))
+        self.logOut.setText(_translate("Dialog", "Log Out"))

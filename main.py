@@ -67,22 +67,27 @@ class adminLogInPage(QDialog):
             msg = QMessageBox.critical(self,'Invalid Information','Enter Valid Credentials')
     
 
-####################################################### Admin Main Screen ######################################################
+####################################################### Admin Main-Screen ######################################################
 class adminMainPage(QDialog):
     def __init__(self ):
         super(adminMainPage,self).__init__()
         loadUi('./userInterface/adminView.ui',self)
         self.delete_2.clicked.connect(self.deleteData)
+        self.logOut.clicked.connect(self.logout)
+        self.searchByModelId.clicked.connect(self.searchPage)
 
         rows,cursor=showall()
+
         cursor.execute("select * from Prediction")
         self.adminTable.setRowCount(rows)
+        print(rows)
 
         rowNo = 0
         for data in cursor:
             self.adminTable.setItem(rowNo , 0 , QTableWidgetItem(data[0]))
             self.adminTable.setItem(rowNo , 1 , QTableWidgetItem(data[1]))
-            self.adminTable.setItem(rowNo , 2 , QTableWidgetItem(data[2]))                     
+            self.adminTable.setItem(rowNo , 2 , QTableWidgetItem(data[2]))    
+            self.adminTable.setItem(rowNo , 3 , QTableWidgetItem(data[3]))                     
             rowNo += 1 
 
     
@@ -106,6 +111,33 @@ class adminMainPage(QDialog):
         adminOBJ = adminMainPage()
         widget.addWidget(adminOBJ)
         widget.setCurrentIndex(widget.currentIndex()+1)
+
+    def logout(self):
+        admin=adminLogInPage()
+        widget.addWidget(admin)
+        widget.setCurrentIndex(widget.currentIndex()+1)
+    
+    def searchPage(self):
+        if len(self.searchID.text()) == 0 :
+            QMessageBox.information(self , "Error!!" , "Please Enter Something In The Feild")
+
+        else:
+            self.id = self.searchID.text()
+            rows , cursor = whereControls(self.id)
+            print(rows)
+            if rows == 0:
+                QMessageBox.information(self , "Error!!" , "No Record Founded")
+            else:
+                query = f'select * from Prediction where ModelID = "{self.id}"'
+                cursor.execute(query)
+                self.adminTable.setRowCount(rows)
+                rowNo = 0
+                for data in cursor:
+                    self.adminTable.setItem(rowNo , 0 , QTableWidgetItem(data[0]))
+                    self.adminTable.setItem(rowNo , 1 , QTableWidgetItem(data[1]))
+                    self.adminTable.setItem(rowNo , 2 , QTableWidgetItem(data[2]))
+                    self.adminTable.setItem(rowNo , 3 , QTableWidgetItem(data[3]))                         
+                    rowNo += 1 
 
 
 
