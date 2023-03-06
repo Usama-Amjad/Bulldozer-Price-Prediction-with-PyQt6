@@ -13,11 +13,11 @@ class welcomeScreen(QDialog):
         self.setWindowIcon(QIcon('./bulldozer-icon.png'))
         self.Calculate.clicked.connect(self.calculation)
         self.adminButton.clicked.connect(self.admin)
-    
+
     def calculation(self):
-        self.modID=int(self.modelID.text())
-        self.year=int(self.YearMade.text())
-        self.meter=int(self.MeterReading.text())
+        self.modID=int(self.modelID.value())
+        self.year=int(self.YearMade.value())
+        self.meter=int(self.MeterReading.value())
         self.result=get_prediction(modelid=self.modID,YearMade=self.year,meterReading=self.meter)
 
         with open("./static_data/files/data.csv" , "a") as data:
@@ -37,7 +37,7 @@ class welcomeScreen(QDialog):
         widget.addWidget(adminP)
         widget.setCurrentIndex(widget.currentIndex()+1)
     
-####################################################### Output Screen ######################################################
+######################################################### Output Screen #############################################################
 class priceOutput(QDialog):
     def __init__(self):
         super(priceOutput , self).__init__()
