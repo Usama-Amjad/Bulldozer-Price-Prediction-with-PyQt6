@@ -12,14 +12,15 @@ def addData(modId,year,meter,result):
 
 # Deleting from database
 def dropRow(modelID):
-    query = f'delete from Prediction where userId = "{id}";'
+    print(modelID)
+    query = f'delete from Prediction where ModelID = "{modelID}";'
     mycursor = mydb.cursor()
     mycursor.execute(query)
     mydb.commit()
 
 # Updating Database
 def updateDatabase(modelId , yearMade , meterReading ,condition):
-    price=get_prediction(modelid=modelId,YearMade=yearMade,meterReading=meterReading)
+    price=get_prediction(modelid=int(modelId),YearMade=int(yearMade),meterReading=int(meterReading))
     query = f"update Prediction set ModelID='{modelId}',yearMade ='{yearMade}', meterReading ='{meterReading}', price='{price}' Where ModelID='{condition}';"
     mycursor = mydb.cursor()
     mycursor.execute(query)
@@ -32,7 +33,7 @@ def showall():
     mycursor.execute(select)
     rows = 0 
     for data in mycursor:
-        # print(data)
+        print(data)
         rows +=1
     return rows , mycursor
 

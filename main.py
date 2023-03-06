@@ -75,21 +75,30 @@ class adminMainPage(QDialog):
         self.delete_2.clicked.connect(self.deleteData)
         self.logOut.clicked.connect(self.logout)
         self.searchByModelId.clicked.connect(self.searchPage)
+        self.add.clicked.connect(self.addRecord)
+        self.updateB.clicked.connect(self.updateRecord)
 
         rows,cursor=showall()
 
         cursor.execute("select * from Prediction")
+        # print(cursor)
         self.adminTable.setRowCount(rows)
-        print(rows)
 
-        rowNo = 0
-        for data in cursor:
-            self.adminTable.setItem(rowNo , 0 , QTableWidgetItem(data[0]))
-            self.adminTable.setItem(rowNo , 1 , QTableWidgetItem(data[1]))
-            self.adminTable.setItem(rowNo , 2 , QTableWidgetItem(data[2]))    
-            self.adminTable.setItem(rowNo , 3 , QTableWidgetItem(data[3]))                     
-            rowNo += 1 
+        rowNo=0
+        for item in cursor:
+            for col in range(0,4):
+                data = str(item[col])
+                self.adminTable.setItem(rowNo , col , QTableWidgetItem(data))
+            rowNo += 1
 
+        # rowNo = 0
+        # for data in cursor:
+        #     print(data)
+        #     self.adminTable.setItem(rowNo , 0 , QTableWidgetItem(data[0]))
+        #     self.adminTable.setItem(rowNo , 1 , QTableWidgetItem(data[1]))
+        #     self.adminTable.setItem(rowNo , 2 , QTableWidgetItem(data[2]))    
+        #     self.adminTable.setItem(rowNo , 3 , QTableWidgetItem(data[3]))                     
+        #     rowNo += 1 
     
     def deleteData(self):
         selectedRow=self.adminTable.currentRow()
@@ -103,7 +112,7 @@ class adminMainPage(QDialog):
                                   )
 
             if btn == QMessageBox.StandardButton.Yes:
-                dropRow(self.userID)
+                dropRow(self.ModelID)
                 QMessageBox.information(self , "Congratulations" , "Data Has Been Deleted")
                 self.viewAll()
 
@@ -116,6 +125,17 @@ class adminMainPage(QDialog):
         admin=adminLogInPage()
         widget.addWidget(admin)
         widget.setCurrentIndex(widget.currentIndex()+1)
+
+    def addRecord(self):
+        add=welcomeScreen()
+        widget.addWidget(add)
+        widget.setCurrentIndex(widget.currentIndex()+1)
+
+    def updateRecord(self):
+        update=Update()
+        widget.addWidget(update)
+        widget.setCurrentIndex(widget.currentIndex()+1)
+
     
     def searchPage(self):
         if len(self.searchID.text()) == 0 :
@@ -137,10 +157,28 @@ class adminMainPage(QDialog):
                     self.adminTable.setItem(rowNo , 1 , QTableWidgetItem(data[1]))
                     self.adminTable.setItem(rowNo , 2 , QTableWidgetItem(data[2]))
                     self.adminTable.setItem(rowNo , 3 , QTableWidgetItem(data[3]))                         
-                    rowNo += 1 
+                    rowNo += 1
 
-
-
+ ######################################################## Update Data ###################################################################
+class Update(QDialog):
+    def __init__(self ):
+        super(Update,self).__init__()
+        loadUi('./userInterface/updateData.ui',self)
+        self.updateButton.clicked.connect(self.RecordUpdated)
+        
+    def RecordUpdated(self):
+        if len(self.condition.text())==0 or len(self.modelID.text())==0 or len(self.yearMade.text()) == 0 or len(self.meterReading.text()) == 0:
+            # self.error.setText("Please Fill All Fields")
+            print('s')
+        else:
+            # self.error.setText("")
+            self.model = self.modelID.text()
+            self.yearM = self.yearMade.text()
+            self.meterR = self.meterReading.text()
+            self.con = self.condition.text()
+            updateDatabase(self.model , self.yearM , self.meterR , self.con)
+            QMessageBox.information(self, "Congratulations" , "Data Has Been Updated")
+            adminMainPage.viewAll()
 
 
 app = QApplication(sys.argv)
