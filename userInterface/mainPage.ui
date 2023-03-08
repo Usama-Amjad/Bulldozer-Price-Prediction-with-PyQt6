@@ -140,7 +140,7 @@
     <number>500</number>
    </property>
    <property name="maximum">
-    <number>300000</number>
+    <number>30000</number>
    </property>
   </widget>
   <widget class="QSpinBox" name="YearMade">
