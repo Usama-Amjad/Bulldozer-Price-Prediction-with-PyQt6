@@ -1,7 +1,12 @@
 import mysql.connector as c
 from model_run import get_prediction
 
-mydb=c.connect(host='localhost',user='root',passwd='usama78630mirzas',database='priceprediction')
+mydb=c.connect(
+        host='localhost',
+        user='root',
+        passwd='usama78630mirzas',
+        database='priceprediction'
+    )
 
 # Adding to database
 def addData(modId,year,meter,result):
@@ -12,7 +17,7 @@ def addData(modId,year,meter,result):
 
 # Deleting from database
 def dropRow(modelID):
-    print(modelID)
+    # print(modelID)
     query = f'delete from Prediction where ModelID = "{modelID}";'
     mycursor = mydb.cursor()
     mycursor.execute(query)
