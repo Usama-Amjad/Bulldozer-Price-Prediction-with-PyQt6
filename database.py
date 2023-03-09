@@ -1,5 +1,6 @@
 import mysql.connector as c
 from model_run import get_prediction
+from PyQt6.QtWidgets import QDialog , QApplication , QWidget , QStackedWidget, QMessageBox , QTableWidget , QTableWidgetItem , QSplashScreen
 
 mydb=c.connect(
         host='localhost',
@@ -25,12 +26,17 @@ def dropRow(modelID):
 
 # Updating Database
 def updateDatabase(modelId , yearMade , meterReading ,condition):
-    price=get_prediction(modelid=int(modelId),YearMade=int(yearMade),meterReading=int(meterReading))
-    query = f"update Prediction set ModelID='{modelId}',yearMade ='{yearMade}', meterReading ='{meterReading}', price='{price}' Where ModelID='{condition}';"
-    mycursor = mydb.cursor()
-    mycursor.execute(query)
-    mydb.commit()
-    return price
+    
+    rows , cursor =whereControls(condition)
+    if rows == 0:
+        return '0'
+    else:
+        price=get_prediction(modelid=int(modelId),YearMade=int(yearMade),meterReading=int(meterReading))
+        query = f"update Prediction set ModelID='{modelId}',yearMade ='{yearMade}', meterReading ='{meterReading}', price='{price}' Where ModelID='{condition}';"
+        mycursor = mydb.cursor()
+        mycursor.execute(query)
+        mydb.commit()
+        return price
 
 # Show All Data
 def showall():

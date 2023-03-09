@@ -182,12 +182,15 @@ class Update(QDialog):
             self.con = self.condition.value()
 
             self.price=updateDatabase(self.model , self.yearM , self.meterR , self.con)
-            btn = QMessageBox.information(self, "Congratulations" , "Data Has Been Updated",QMessageBox.StandardButton.Ok)
-            # update_new_data(self,self.model , self.yearM , self.meterR , self.price)
-            if btn==QMessageBox.StandardButton.Ok:
-                admin=adminMainPage()
-                widget.addWidget(admin)
-                widget.setCurrentIndex(widget.currentIndex()+1)
+            if self.price=='0':
+                QMessageBox.information(self,"Error!!" , "No Record Founded")
+            else:
+                btn = QMessageBox.information(self, "Congratulations" , "Data Has Been Updated",QMessageBox.StandardButton.Ok)
+                # update_new_data(self,self.model , self.yearM , self.meterR , self.price)
+                if btn==QMessageBox.StandardButton.Ok:
+                    admin=adminMainPage()
+                    widget.addWidget(admin)
+                    widget.setCurrentIndex(widget.currentIndex()+1)
 
 app = QApplication(sys.argv)
 splash=QPixmap('./static_data/images/splashn.jpg')
