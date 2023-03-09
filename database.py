@@ -30,6 +30,7 @@ def updateDatabase(modelId , yearMade , meterReading ,condition):
     mycursor = mydb.cursor()
     mycursor.execute(query)
     mydb.commit()
+    return price
 
 # Show All Data
 def showall():

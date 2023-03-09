@@ -12,26 +12,28 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(639, 595)
+        Dialog.resize(799, 599)
         self.widget = QtWidgets.QWidget(parent=Dialog)
-        self.widget.setGeometry(QtCore.QRect(-1, -1, 641, 601))
-        self.widget.setStyleSheet("background-image: url(C:/Users/Dell/Downloads/priceoutput.jpg);background-size: 150px;\n"
-"    ")
+        self.widget.setGeometry(QtCore.QRect(-1, -1, 800, 600))
+        self.widget.setStyleSheet("background-image: url(C:/Users/Dell/Downloads/bulldozerBack.jfif);")
         self.widget.setObjectName("widget")
         self.estimatedPrice = QtWidgets.QLabel(parent=self.widget)
-        self.estimatedPrice.setGeometry(QtCore.QRect(230, 70, 301, 41))
+        self.estimatedPrice.setGeometry(QtCore.QRect(310, 180, 301, 41))
         font = QtGui.QFont()
-        font.setPointSize(22)
+        font.setPointSize(-1)
         font.setBold(True)
-        font.setUnderline(False)
         font.setWeight(75)
         self.estimatedPrice.setFont(font)
+        self.estimatedPrice.setStyleSheet("background: transparent;\n"
+"font-weight:bold;\n"
+"color:black;\n"
+"font-size: 37px;")
         self.estimatedPrice.setObjectName("estimatedPrice")
         self.goBack = QtWidgets.QPushButton(parent=self.widget)
-        self.goBack.setGeometry(QtCore.QRect(270, 200, 93, 28))
+        self.goBack.setGeometry(QtCore.QRect(380, 310, 93, 28))
         self.goBack.setObjectName("goBack")
         self.Price = QtWidgets.QLineEdit(parent=self.widget)
-        self.Price.setGeometry(QtCore.QRect(260, 130, 121, 41))
+        self.Price.setGeometry(QtCore.QRect(370, 240, 121, 41))
         self.Price.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.Price.setClearButtonEnabled(True)
         self.Price.setObjectName("Price")

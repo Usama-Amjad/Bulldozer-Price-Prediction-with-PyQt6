@@ -28,8 +28,8 @@
    <widget class="QPushButton" name="Clear">
     <property name="geometry">
      <rect>
-      <x>350</x>
-      <y>490</y>
+      <x>370</x>
+      <y>470</y>
       <width>93</width>
       <height>28</height>
      </rect>
@@ -41,8 +41,8 @@
    <widget class="QPushButton" name="adminButton">
     <property name="geometry">
      <rect>
-      <x>350</x>
-      <y>530</y>
+      <x>370</x>
+      <y>510</y>
       <width>93</width>
       <height>28</height>
      </rect>
@@ -54,8 +54,8 @@
    <widget class="QPushButton" name="Calculate">
     <property name="geometry">
      <rect>
-      <x>350</x>
-      <y>450</y>
+      <x>370</x>
+      <y>430</y>
       <width>93</width>
       <height>28</height>
      </rect>
@@ -67,19 +67,24 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>240</x>
-      <y>90</y>
+      <x>210</x>
+      <y>70</y>
       <width>531</width>
       <height>61</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>24</pointsize>
+      <pointsize>-1</pointsize>
       <weight>75</weight>
       <bold>true</bold>
-      <underline>false</underline>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background: transparent;
+font-weight:bold;
+color:black;
+font-size: 37px;</string>
     </property>
     <property name="text">
      <string>Bulldozer Price Prediction</string>
@@ -88,16 +93,27 @@
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>313</x>
-      <y>345</y>
-      <width>241</width>
-      <height>31</height>
+      <x>300</x>
+      <y>330</y>
+      <width>261</width>
+      <height>21</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>10</pointsize>
+      <pointsize>-1</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
      </font>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background: transparent;
+font-weight:bold;
+color:white;
+font-size: 18px;</string>
     </property>
     <property name="text">
      <string>Enter Expected Meter Reading</string>
@@ -106,8 +122,8 @@
    <widget class="QSpinBox" name="MeterReading">
     <property name="geometry">
      <rect>
-      <x>350</x>
-      <y>380</y>
+      <x>370</x>
+      <y>360</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -128,16 +144,24 @@
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>358</x>
-      <y>180</y>
-      <width>121</width>
+      <x>360</x>
+      <y>160</y>
+      <width>151</width>
       <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>10</pointsize>
+      <pointsize>-1</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background: transparent;
+font-weight:bold;
+color:white;
+font-size: 18px;</string>
     </property>
     <property name="text">
      <string>Enter ModelID</string>
@@ -146,8 +170,8 @@
    <widget class="QSpinBox" name="YearMade">
     <property name="geometry">
      <rect>
-      <x>350</x>
-      <y>290</y>
+      <x>370</x>
+      <y>270</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -162,8 +186,8 @@
    <widget class="QSpinBox" name="modelID">
     <property name="geometry">
      <rect>
-      <x>350</x>
-      <y>210</y>
+      <x>370</x>
+      <y>190</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -178,16 +202,24 @@
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>353</x>
-      <y>260</y>
-      <width>131</width>
+      <x>350</x>
+      <y>240</y>
+      <width>161</width>
       <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>10</pointsize>
+      <pointsize>-1</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background: transparent;
+font-weight:bold;
+color:white;
+font-size: 18px;</string>
     </property>
     <property name="text">
      <string>Enter Year Made</string>
