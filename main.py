@@ -196,7 +196,7 @@ app = QApplication(sys.argv)
 splash=QPixmap('./static_data/images/splashn.jpg')
 splashScreen=QSplashScreen(splash)
 
-splashScreen.setGeometry(470,130,600,600)
+splashScreen.setGeometry(500,110,600,600)
 splashScreen.show()
 time.sleep(2)
 splashScreen.close()

@@ -72,7 +72,7 @@ class Ui_Dialog(object):
         self.adminTable.horizontalHeader().setCascadingSectionResizes(False)
         self.widget = QtWidgets.QWidget(parent=Dialog)
         self.widget.setGeometry(QtCore.QRect(-1, -1, 801, 601))
-        self.widget.setStyleSheet("background-image: url(C:/Users/Dell/Downloads/bulldozerBack.jfif);")
+        self.widget.setStyleSheet("background-image: url(./static_data/images/bulldozerBack.jfif);")
         self.widget.setObjectName("widget")
         self.widget.raise_()
         self.adminView.raise_()

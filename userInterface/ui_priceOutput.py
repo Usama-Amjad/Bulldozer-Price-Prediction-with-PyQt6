@@ -15,7 +15,7 @@ class Ui_Dialog(object):
         Dialog.resize(799, 599)
         self.widget = QtWidgets.QWidget(parent=Dialog)
         self.widget.setGeometry(QtCore.QRect(-1, -1, 800, 600))
-        self.widget.setStyleSheet("background-image: url(C:/Users/Dell/Downloads/bulldozerBack.jfif);")
+        self.widget.setStyleSheet("background-image: url(./static_data/images/bulldozerBack.jfif);")
         self.widget.setObjectName("widget")
         self.estimatedPrice = QtWidgets.QLabel(parent=self.widget)
         self.estimatedPrice.setGeometry(QtCore.QRect(310, 180, 301, 41))

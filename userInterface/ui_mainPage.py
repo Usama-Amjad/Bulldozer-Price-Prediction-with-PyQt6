@@ -15,7 +15,7 @@ class Ui_Dialog(object):
         Dialog.resize(801, 666)
         self.widget = QtWidgets.QWidget(parent=Dialog)
         self.widget.setGeometry(QtCore.QRect(-1, -1, 811, 671))
-        self.widget.setStyleSheet("background-image: url(C:/Users/Dell/Downloads/bulldozerBack.jfif);")
+        self.widget.setStyleSheet("background-image: url(./static_data/images/bulldozerBack.jfif);")
         self.widget.setObjectName("widget")
         self.Clear = QtWidgets.QPushButton(parent=self.widget)
         self.Clear.setGeometry(QtCore.QRect(370, 470, 93, 28))

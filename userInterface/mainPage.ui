@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-image: url(C:/Users/Dell/Downloads/bulldozerBack.jfif);</string>
+    <string notr="true">background-image: url(./static_data/images/bulldozerBack.jfif);</string>
    </property>
    <widget class="QPushButton" name="Clear">
     <property name="geometry">
