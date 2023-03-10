@@ -198,7 +198,7 @@ splashScreen=QSplashScreen(splash)
 
 splashScreen.setGeometry(470,130,600,600)
 splashScreen.show()
-time.sleep(1)
+time.sleep(2)
 splashScreen.close()
 
 welcome = welcomeScreen()
